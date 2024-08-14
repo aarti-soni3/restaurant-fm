@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { foodData } from './food-data'
+import { Button, Stack } from '@mui/material';
 
 export default function Foods() {
 
+  //  note : logic is right but the way i filter foods thats you done wrong - without declaring foods hook 
+  //  don't make it hard by written code inside filter make it easy - make function variable and save it state n display
   const [foods, SetFoods] = useState(foodData);
   const [categoryValue, SetCategoryValue] = useState('all');
   const [priceValue, SetPriceValue] = useState('all');
@@ -30,19 +33,22 @@ export default function Foods() {
       <h2>Top Rated Menu Items</h2>
 
       <h4>Filter Type</h4>
-      <button style={{ margin: 2 }} onClick={() => { SetCategoryValue('all') }}>All</button>
-      <button style={{ margin: 2 }} onClick={() => { SetCategoryValue('burger') }}>Burger</button>
-      <button style={{ margin: 2 }} onClick={() => { SetCategoryValue('pizza') }}>Pizza</button>
-      <button style={{ margin: 2 }} onClick={() => { SetCategoryValue('salad') }}>Salad</button>
-      <button style={{ margin: 2 }} onClick={() => { SetCategoryValue('chicken') }}>Chicken</button>
+      <Stack spacing={2} direction='row'>
+      <Button variant='contained' onClick={() => { SetCategoryValue('all') }}>All</Button>
+      <Button variant='contained' onClick={() => { SetCategoryValue('burger') }}>Burger</Button>
+      <Button variant='contained' onClick={() => { SetCategoryValue('pizza') }}>Pizza</Button>
+      <Button variant='contained' onClick={() => { SetCategoryValue('salad') }}>Salad</Button>
+      <Button variant='contained' onClick={() => { SetCategoryValue('chicken') }}>Chicken</Button>
+      </Stack>
 
       <h4>Filter Price</h4>
-      <button style={{ margin: 2 }} onClick={() => { SetPriceValue('all') }}>All</button>
-      <button style={{ margin: 2 }} onClick={() => { SetPriceValue('$') }}>$</button>
-      <button style={{ margin: 2 }} onClick={() => { SetPriceValue('$$') }}>$$</button>
-      <button style={{ margin: 2 }} onClick={() => { SetPriceValue('$$$') }}>$$$</button>
-      <button style={{ margin: 2 }} onClick={() => { SetPriceValue('$$$$') }}>$$$$</button>
-
+      <Stack spacing={2} direction='row'>
+      <Button variant='contained' onClick={() => { SetPriceValue('all') }}>All</Button>
+      <Button variant='contained' onClick={() => { SetPriceValue('$') }}>$</Button>
+      <Button variant='contained' onClick={() => { SetPriceValue('$$') }}>$$</Button>
+      <Button variant='contained' onClick={() => { SetPriceValue('$$$') }}>$$$</Button>
+      <Button variant='contained' onClick={() => { SetPriceValue('$$$$') }}>$$$$</Button>
+      </Stack>
       <p>{foods.map(item => (<li key={item.id}>{item.name}- {item.category} - {item.price}</li>))}</p>
     </div>
   )
